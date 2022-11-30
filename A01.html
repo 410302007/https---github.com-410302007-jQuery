@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>A01</title>
+    <script src="./javascripts/jquery-3.6.1.js"></script>
+    <script>
+        function Dog(name, age) {
+            this.name = name;        //name . age => property屬性
+            this.age = age;
+            this.cry = function () {
+                console.log(`${this.name}汪汪汪....`);
+            } //cry => method 方法
+        }
+        let dog1 = new Dog("小白", 5);
+        let dog2 = new Dog("小黑", 10);
+        dog1.color = "white"
+
+        console.log(`dog2.name = ${dog2.name} ${dog2.toString()} ${JSON.stringify(dog2)}`); //template literal 樣板字面值  
+        //dog2.name = 小黑 [object Object] {"name":"小黑","age":10}
+        dog1.cry();  //小白汪汪汪....
+        //========================
+
+        function f1() {    //constructor 建構函式
+            alert("Hello World");
+        }
+        // let btn2 = document.getElementById("btn2");
+        // console.log(btn2); //-->null
+
+        function init() {
+            let btn2 = document.getElementById("btn2");
+            // console.log(btn2); -->null
+            // console.log(btn2.toString()); -->[object HTMLButtonElement]
+            btn2.onclick = function () {
+                alert("Long time no see! Welcome back!");
+            }
+        }
+        window.onload = function () {
+            let btn2 = document.getElementById("btn2");
+            btn2.onclick = function () {
+                alert("Long time no see. Welcome back!");
+            }
+        }
+        // $(){} = jQuery(){}
+        // $(document).ready(function () {
+        //     $("#btn3").click(function () {
+        //         alert("歡迎光臨!");
+        //     })
+        // }) 下方為精簡版
+        $(function () {
+            $("#btn3").click(function () {
+                alert("歡迎光臨!");
+            })
+            $("div:eq(1)").mouseover(function () {
+                //方法一:
+                //$(this).css("color", "red").css("font-size", "2cm").css("font-style", "italic");//串聯方法呼叫
+
+                //方法二:
+                $(this).css({ color: "red", fontSize: "2cm", "font-style": "italic" });
+            });
+            // 方法三:
+            //箭頭函式=>
+            // $("div:eq(1)").mouseover((event) =>
+            //     $(event.currentTarget).css({ color: "red", fontSize: "2cm", "font-style": "italic" })
+            // });
+
+
+            $("div:eq(1)").mouseout(function () {
+                // $(this).css("color", "").css("font-size", "").css("font-style", "");//串聯方法呼叫
+
+                $(this).css({ color: "", fontSize: "", fontStyle: "" });
+            });
+        })
+    </script>
+</head>
+
+<!-- <body onload="init()"> 類似於 window.onload =....-->
+
+<body>
+
+    <div>
+        <button onclick="f1()">確定1</button><!-- 利用 event attrbute-->
+        <button id="btn2">確定2</button>
+        <button id="btn3">確定3</button>
+    </div>
+    <div>歡迎進入jQery的程式設計殿堂</div>
+
+</body>
+
+</html>

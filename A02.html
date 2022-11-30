@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>A02</title>
+    <link rel="stylesheet" href="./stylesheets/jquery-ui/base/jquery-ui.css">
+    <script src="./javascripts/jquery-3.6.1.js"></script>
+    <script src="./javascripts/jquery-ui.min.js"></script>
+
+    <script>
+        $(function () {
+            $("div:first").tabs();      //first = eq(0)
+            $("#p1 h1:gt(1)").css("color", 'red')    //gt(1)--> greaterthan 大於 1 以上
+
+            $("#p1 table:eq(0) tr:has(td):even").css({ backgroundColor: "yellow" })
+
+            // $("#p1 h1:first").click(function () {  
+            $("#p1 h1:eq(0)").click(function () {
+                // $(this).css("fontSize", "2cm")
+                $(this).css({ fontSize: "2cm", color: "red" }) //{} --> object literal / object expression 物件表達式
+                // $(this).css({ "fontSize": "+=5", color: "red" })
+                //function(){} 為匿名函式(anonymous function)  //function literal or function expression 
+                //()=>{} 為箭頭函式(arrow function)(為匿名函式之一)
+            });
+
+            //註冊"#p1 h1"的click事件處理器
+
+            $("#p2 h1").click(function () {
+                $(this).css({ "font-size": "+=5", color: "blue" }) //遞增
+            })
+
+            $("#p3 h1").click(function () {
+                $(this).css({ "font-size": "-=2", color: "orange" }) //遞減
+            })
+
+        })
+        //該function是 事件處理器(event handler)/ 事件監聽器(eventlistener)
+        //DOM完成loading的事件
+        $(function () {
+            $("#p2 h1").hover(
+                function () {
+                    $(this).addClass("style1");
+                },
+                function () {
+                    $(this).removeClass("style1");
+                }
+            )
+        })
+    </script>
+    <style>
+        .style1 {
+            font-size: 2cm;
+            color: red;
+            transition: fon-size 3s, color 5s;
+        }
+    </style>
+</head>
+
+
+<body>
+
+    <div>
+        <ul>
+            <li><a href="#p1">第一頁</a></li>
+            <li><a href="#p2">第二頁</a></li>
+            <li><a href="#p3">第三頁</a></li>
+        </ul>
+        <div id="p1">
+            <table border="1">
+                <tr>
+                    <th>員工編號</th>
+                    <th>姓名</th>
+                    <th>職稱</th>
+                    <th>生日</th>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>Hello Kitty</td>
+                    <td>行政總監</td>
+                    <td>1990/11/11</td>
+                <tr>
+                    <th>員工編號</th>
+                    <th>姓名</th>
+                    <th>職稱</th>
+                    <th>生日</th>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Hello Kitty</td>
+                    <td>行政總監</td>
+                    <td>1990/11/11</td>
+                <tr>
+                    <th>員工編號</th>
+                    <th>姓名</th>
+                    <th>職稱</th>
+                    <th>生日</th>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Hello Kitty</td>
+                    <td>行政總監</td>
+                    <td>1990/11/11</td>
+                <tr>
+                    <th>員工編號</th>
+                    <th>姓名</th>
+                    <th>職稱</th>
+                    <th>生日</th>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>Hello Kitty</td>
+                    <td>行政總監</td>
+                    <td>1990/11/11</td>
+                <tr>
+                    <th>員工編號</th>
+                    <th>姓名</th>
+                    <th>職稱</th>
+                    <th>生日</th>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>Hello Kitty</td>
+                    <td>行政總監</td>
+                    <td>1990/11/11</td>
+            </table>
+            <h1>Hello World! 1</h1> <!-- 0 -->
+            <h1>Hello World! 1</h1> <!-- 1 -->
+            <h1>Hello World! 1</h1> <!-- 2 -->
+            <h1>Hello World! 1</h1> <!-- 3 -->
+        </div>
+        <div id="p2">
+            <h1>Hello World! 2</h1>
+        </div>
+        <div id="p3">
+            <h1>Hello World! 3</h1>
+        </div>
+    </div>
+    <script>
+        //$("div:first").tabs();
+    </script>
+</body>
+
+</html>

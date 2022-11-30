@@ -1,0 +1,98 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>使用滑鼠事件範例1</title>
+    <link rel="icon" href="./favicon.ico" />
+    <link href="stylesheets/jquery-ui/base/jquery-ui.min.css" rel="stylesheet" />
+    <style>
+        .main-box {
+            margin: 50px auto;
+            width: 400px;
+            height: 200px;
+            padding: 50px;
+            box-shadow: 5px 5px 10px #999;
+            border: 1px solid #fff;
+            text-align: center;
+            overflow: auto;
+        }
+
+        .dashboard {
+            width: 70px;
+            background-color: rgb(110, 138, 195);
+            padding: 20px 20px 0 20px;
+            position: absolute;
+            left: -92px;
+            z-index: 100;
+        }
+
+        .dashboard img {
+            margin-bottom: 20px;
+            border: 1px solid rgb(0, 0, 0);
+        }
+    </style>
+    <script src="javascripts/jquery-3.6.1.min.js"></script>
+    <script src="javascripts/jquery-ui.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $("#tabs").tabs();
+            $("#p1 #button1").click(function () {
+                alert("歡迎" + $("#text1").val() + "光臨");
+            });
+
+            $("#p2 #button2").dblclick(function () {
+                $(this).attr("disabled", true).css("color", "rgba(255,0,0,0.3)");
+                let w = $(this).css("width");
+                let h = $(this).css("height");
+
+                $(this).animate({ width: "100px", height: "100px" }, 1000,
+                    function () {
+                        $(this).animate({ width: w, height: h }, 2000, function () {
+                            $(this).attr("disabled", false).css("color", "");
+                        });
+                    });
+            })
+
+
+        });
+    </script>
+</head>
+
+<body>
+    <div id="tabs">
+        <ul>
+            <li><a href="#p1">.click()</a></li>
+            <li><a href="#p2">.dbclick()</a></li>
+            <li><a href="#p3">.hover()</a></li>
+        </ul>
+        <div id="p1">
+            <div class="main-box">
+                <label>
+                    姓名
+                    <input type="text" id="text1" size="20" value="Hello小倩" />
+                </label>
+                <input type="button" id="button1" value="Click" />
+            </div>
+        </div>
+        <div id="p2">
+            <div class="main-box">
+                <label>
+                    姓名
+                    <input type="text" id="text2" size="20" value="Hello采臣" />
+                </label>
+                <input type="button" id="button2" value="dblClick" />
+            </div>
+        </div>
+        <div id="p3">
+            <div class="main-box" style="position:relative">
+                <div class="dashboard">
+                    <img src="images/small/blue_h.jpg" width="70" height="70" alt="blue">
+                    <img src="images/small/green_h.jpg" width="70" height="70" alt="green">
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

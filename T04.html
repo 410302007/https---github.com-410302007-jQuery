@@ -1,0 +1,116 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>樣式控制 2</title>
+    <link rel="icon" href="./favicon.ico" />
+    <style type="text/css">
+        .main-box {
+            margin: 50px auto;
+            width: 600px;
+            height: 300px;
+            padding: 40px;
+            box-shadow: 5px 5px 10px #999;
+            border: 1px solid #fff;
+            text-align: center;
+            overflow: auto;
+        }
+
+        .my-style {
+            font-style: italic;
+            color: green;
+            font-size: 1.5cm;
+            font-weight: bold;
+            transition: font-size 2s, color 5s;
+            /*transition(轉場/過渡/漸變 動畫): transition-property transition-duration, ... ;
+              CSS transitions allows you to change property values smoothly, over a given duration.
+                To create a transition effect, you must specify two things:
+                1. the CSS property you want to add an effect to
+                2. the duration of the effect(預設0)
+            */
+        }
+
+        #p2 div.question {
+            text-align: left;
+            background: url(images/open.png) no-repeat 0 11px;
+            padding: 10px 0 0 25px;
+            cursor: pointer;
+        }
+
+        #p2 div.question.close {
+            background-image: url(images/close.png);
+        }
+
+        #p2 div.answer {
+            text-align: left;
+            margin-left: 25px;
+        }
+    </style>
+    <link href="stylesheets/jquery-ui/base/jquery-ui.min.css" rel="stylesheet" />
+    <script src="javascripts/jquery-3.6.1.min.js"></script>
+    <script src="javascripts/jquery-ui.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $("#tabs").tabs();
+
+            $("#p1 #div1").hover(
+                function () { $(this).addClass("my-style") },     //新增類別
+                function () { $(this).removeClass("my-style") }  //移除類別
+            );
+
+            $('#p2 .answer').hide();
+            $('#p2 .question').click(
+                function () {
+                    if ($(this).hasClass('close')) {
+                        $(this).next().fadeOut(); //淡出; fadeIn淡入
+                        $(this).removeClass('close');  //- //click (-)  --> answer fadeOut --> remove 'close'
+                    }
+                    else {
+                        $(this).next().slideDown(); //slideDown <=> slideUp (+ duration 期間) //next <=> prev
+                        $(this).addClass('close');   //+  //click(+)--> answer slideDown
+                    }
+                }
+            );
+        });
+    </script>
+</head>
+
+<body>
+    <div id="tabs">
+        <ul>
+            <li><a href="#p1">.addClass() .removeClass()</a></li>
+            <li><a href="#p2">.hasClass()</a></li>
+        </ul>
+        <div id="p1">
+            <div class="main-box">
+                <div id="div1">
+                    歡迎來&quot;jQuery &amp; jQuery UI&quot;的程式設計殿堂...
+                </div>
+            </div>
+        </div>
+        <div id="p2">
+            <div class="main-box">
+                <h4>A One Page FAQ</h4>
+                <div class="question">I've heard that JavaScript is the long-lost fountain of youth. Is this true?</div>
+                <div class="answer">
+                    <p>Why, yes it is! Studies prove that learning JavaScript freshens the mind and extends life span by
+                        several hundred years. (Note: some scientists disagree with these claims.)</p>
+                </div>
+                <div class="question">Can JavaScript really solve all of my problems?</div>
+                <div class="answer">
+                    <p>Why, yes it can! It's the most versatile programming language ever created and is trained to
+                        provide financial management advice, life-saving CPR, and even to take care of household pets.
+                    </p>
+                </div>
+                <div class="question">Is there nothing JavaScript <em>can&#8217;t</em> do?</div>
+                <div class="answer">
+                    <p>Why, no there isn&#8217;t! It&#8217;s even able to write its own public relations-oriented
+                        Frequently Asked Questions pages. Now that&#8217;s one smart programming language!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

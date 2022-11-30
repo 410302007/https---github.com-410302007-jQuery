@@ -1,0 +1,57 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>選擇器</title>
+    <script src="javascripts/jquery-3.6.1.min.js"></script>
+    <script>
+        $(function () {
+            $("div.c1").css({ backgroundColor: 'yellow' });
+            $("#c1-1").css({ backgroundColor: 'lime' });
+            $(".c1 h3, .c1 h4").css({ backgroundColor: 'pink' });
+            //------------------------------------------------//
+            $("div.c2 :text").css({ color: 'red' });
+            $("div.c2 :password").css({ color: 'blue' });
+            $("div.c2 :checked").css({ width: '20px', height: '20px' });
+            $("div.c2 :button:disabled").css({ border: '1px solid blue' });
+            //------------------------------------------------//
+            $("div.c3 input:first").focus();
+            $("div.c3 h4:even").css({ color: "blue" }); //偶數的h4為藍色
+            $("div.c3 :header:not('h4')").css({ backgroundColor: "yellow" }); //所有的header元素但不要h4(排除h4)
+        });
+    </script>
+</head>
+
+<body>
+    <div class="c1">
+        <div id="c1-1">Welcome to jQuery Selectors...</div>
+        <div>Welcome to jQuery Selectors...</div>
+        <h4>***Welcome to jQuery Selectors***</h4>
+        <h4>***Welcome to jQuery Selectors***</h4>
+        <div>Welcome to jQuery Selectors...</div>
+    </div>
+    <hr />
+    <div class="c2">
+        <input type="text" size="15" value="Hello jQuery" />
+        <input type="password" size="15" value="Hello jQuery" />
+        <fieldset style="width:100px;">
+            <legend>性別</legend>
+            <label for="male">男</label><input type="radio" name="sex" id="male" />
+            <label for="female">女</label><input type="radio" name="sex" id="female" checked="checked" />
+        </fieldset>
+        <button type="button" disabled>確定</button>
+        <button type="button">取消</button>
+    </div>
+    <hr />
+    <div class="c3">
+        <input type="text" value="Hello..." />
+        <input type="text" value="Hello..." />
+        <h4>***Welcome to jQuery Selectors***</h4> <!-- 0 -->
+        <h5>***Welcome to jQuery Selectors***</h5>
+        <h4>***Welcome to jQuery Selectors***</h4> <!-- 1 -->
+    </div>
+    <hr />
+</body>
+
+</html>
