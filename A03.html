@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./javascripts/jquery-3.6.1.js">
+
+    </script>
+    <script>
+        let obj1 = {
+            forEach: function (num, fun) {
+                console.log(num);
+                if (fun == undefined)
+                    return;  //function結束
+
+                let nums = [1, 2, 3]
+                for (let i = 0; i < nums.length; i++) {
+                    fun(nums[i]);
+                }
+
+            }
+        }
+
+        obj1.forEach(100);
+        obj1.forEach(200);
+        obj1.forEach(300, function (n) { console.log(`n=${n}`) });
+        //-----------------------------------------------------------
+        let nums = [1, 3, 8, 7, 9, 10];
+
+        //方法一: for loop
+        let tot = 0;
+        //迭代 iteration/ 遍歷
+        for (let i = 0; i < nums.length; i++) {
+            tot = tot + nums[i]
+        }
+        console.log(`tot=${tot}`);
+
+        //方法二: forEach   -> js    v.s   jquery
+        let sum = 0
+        nums.forEach(function (value, index) {    //js ->function(value,index){}
+            sum = sum + value;
+        })
+        console.log(`sum=${sum}`);
+
+        let s = 0
+        $.each(nums, function (index, value) {      //jquery ->function(value,index){}
+            s += value;
+        });
+        console.log(`s=${s}`);
+        //-----------------------------------
+        let total = 0;
+        for (let i = 1; i <= 10; i++) {
+            // console.log(`i = ${i}`);
+            total += i; //total = total + i 
+        }
+        console.log(`total=${total}`);
+
+    </script>
+
+
+
+</head>
+
+<body>
+    Hello
+</body>
+
+</html>
