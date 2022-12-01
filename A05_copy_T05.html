@@ -52,9 +52,13 @@
                             $(this).attr("disabled", false).css("color", "");
                         });
                     });
-            })
-
-
+            });
+            $("#p3 .dashboard").hover(
+                function () {
+                    $(this).stop().animate({ left: '0px', backgroundColor: 'yellow' }, 1000, 'easeInSine');
+                }, function () {
+                    $(this).stop().animate({ left: '-92px', backgroundColor: 'rgb(110,138,195)' }, 1500, 'easeOutBack')
+                });
         });
     </script>
 </head>
