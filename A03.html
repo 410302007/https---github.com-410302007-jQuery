@@ -10,6 +10,35 @@
 
     </script>
     <script>
+        // if else / else if +(小括號)
+        let v1 = 100;
+        if (v1 > 500) {
+            console.log("aaa");
+        } else {
+            if (v1 > 300) {
+                console.log("bbb");
+            } else {
+                if (v1 > 200) {
+                    console.log(("ccc"));
+                } else {
+                    console.log("ddd");
+                }
+            }
+        }
+        //--------------------------
+        let m1 = 250
+        if (m1 > 500)    //省略大括號
+            console.log("aaa");
+        else if (m1 > 300)
+            console.log("bbb");
+        else if (m1 > 200)
+            console.log(("ccc"));
+        else
+            console.log("ddd");
+
+
+
+
         let obj1 = {
             forEach: function (num, fun) {
                 console.log(num);
