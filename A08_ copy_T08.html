@@ -96,7 +96,11 @@
             });
             //手風琴選單
             $("#right_nav").accordion();
+
             //AutoComplete功能
+            $("input[name=name]").autocomplete({     //欄位名稱(name)=name
+                source: ["mary", "may", "michael", "jane", "jacob"]
+            });
 
             //對話框
             //dialog1 為jQuery集合物件
