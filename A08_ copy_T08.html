@@ -1,0 +1,364 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>jQuery UI 外掛程式</title>
+    <link rel="icon" href="./favicon.ico" />
+    <style type="text/css">
+        h1 {
+            font-size: 32px;
+            color: black;
+            text-shadow: 1px 1px 1px rgba(0, 0, 0, .5);
+            border-bottom: solid 1px rgba(0, 0, 0, .5);
+            margin-bottom: 0.75em;
+        }
+
+        #right_content {
+            font-family: Arial;
+        }
+
+        #right_nav ul {
+            overflow: hidden;
+        }
+
+        .tel {
+            font-size: 1.5em;
+            cursor: default;
+        }
+
+        /* 下列覆寫datepicker原始CSS設定 */
+        button.ui-datepicker-trigger {
+            padding: 0px 3px;
+            height: 22px;
+        }
+
+        /* 用於ProgressBar */
+        #progressbar {
+            position: absolute;
+            height: 20px;
+            width: 200px;
+        }
+
+        .progress-label {
+            position: absolute;
+            text-align: center;
+            font-weight: bold;
+            text-shadow: 1px 1px 0 #fff;
+            height: 20px;
+            width: 200px;
+        }
+    </style>
+
+    <link href="stylesheets/greefies/style.css" rel="stylesheet" />
+    <link href="stylesheets/jquery-ui/ui-lightness/jquery-ui.css" rel="stylesheet" />
+    <!-- AnythingSlider 須依其theme選項之設定值，選用對應之CSS樣式表 (如下二個樣式表分別對應: default/cs-portfolio 布景主題) -->
+    <link href="stylesheets/anythingSlider/anythingslider.css" rel="stylesheet" />
+    <link href="stylesheets/anythingSlider/theme-cs-portfolio.css" rel="stylesheet" />
+
+    <style type="text/css">
+        #slider {
+            width: 320px;
+            height: 200px;
+        }
+
+        /* 覆寫原始CSS*/
+        #slider .c1 {
+            text-align: center;
+            text-shadow: 1px 1px 1px rgba(0, 0, 0, .5);
+        }
+
+        #slider .c2 {
+            font-size: 2em;
+            font-weight: 800;
+            padding: 20px;
+        }
+
+        #slider .c3 {
+            font-size: 1em;
+            font-weight: 600;
+        }
+    </style>
+    <script src="javascripts/jquery-3.6.1.min.js"></script>
+    <script src="javascripts/jquery-ui.min.js"></script>
+    <script src="javascripts/jquery.ui.datepicker-zh-TW.js"></script>
+    <script src="javascripts/anythingSlider/jquery.anythingslider.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            //日期選擇器
+            $("input[name=date]").datepicker({
+                changeYear: true,
+                changeMonth: true,
+                showOn: "both",
+                buttonImage: 'images/calendar.png',
+                buttonText: '請選擇日期',  // 有圖片就不會有文字，文字會變成tooltip 
+                // numberOfMonths: [1, 2]  //一次顯示兩個月 (1 row 2 column)
+            });
+            //手風琴選單
+            $("#right_nav").accordion();
+            //AutoComplete功能
+
+            //對話框
+            //dialog1 為jQuery集合物件
+            let dialog1 = $("<div></div>").dialog({
+                autoOpen: false, modal: true, title: "訊息對話框",
+                width: 600,
+                buttons: [{
+                    "text": "確定", "click": function () {
+                        // $.ajax({
+                        //     method:'get',
+                        //     url:'',
+                        //     data:'empid=1&firstname=kitty',
+                        //     success:function(){}
+                        // });
+                    }
+                },
+                {
+                    "text": "關閉",
+                    "click": function () {
+                        $(this).dialog('close')      //this = dialog1
+                    }
+                }
+                ]
+            });
+
+            //Method1. ->return false           阻止 <a>標籤 之預設行為  
+            $(".read_more a").click(function () {
+                // dialog1.html("歡迎光臨我們網站...").dialog("open");    
+                //html為設定前面jquery(dialog1)的內容元素(文字)
+                dialog1.load("BiologicalClock.html #div1").dialog("open")               //load +  網址 
+                // return flase;   //阻止 <a>標籤 之預設行為(= event.prevent default)   
+                // 若沒有return false ->會顯示超連結
+            });
+
+            //Method2. ->event.prevent default   阻止 <a>標籤 之預設行為  
+            // $(".read_more a").click(function (event) {
+            //     event.preventDefault();
+            //     dialog1.dialog("open");
+            // });
+
+            //Draggable與Droppable
+
+            //工具提示框
+
+            //Spinner
+            $("input[name=sat_degree]").spinner({
+                max: 10, min: 1
+            });
+            //輪播器
+            $("#slider").anythingSlider(
+                {
+                    theme: 'cs-portfolio',
+                    autoPlay: true,
+                    buildArrows: false,
+                    buildNavigation: false,
+                    buildStartStop: false
+                });
+        });
+
+    </script>
+</head>
+
+<body>
+    <!--Greefies Css Template-->
+    <div id="main_container">
+        <div id="header">
+            <div id="logo">
+                <img src="images/greefies/logo.gif" alt="greefies solution" border="0" />
+            </div>
+            <div id="menu">
+                <ul>
+                    <li><a href="#" title="">home</a></li>
+                    <li><a href="#" title="">services</a></li>
+                    <li><a href="#" title="">clients</a></li>
+                    <li><a href="#" title="">testimonials</a></li>
+                    <li><a class="current" href="#" title="">contact us</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="green_box">
+            <div class="clock">
+                <img src="images/greefies/clock.png" alt="生理時鐘" />
+            </div>
+            <div class="text_content">
+                <h1>What is your biological clock?</h1>
+                <p class="green">
+                    "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
+                    labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                    nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit
+                    esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+                    culpa qui officia deserunt mollit anim id est laborum."
+                </p>
+                <div class="read_more"><a href="#" title="查看詳細內容">read more</a></div>
+                <!-- 超連結(#)代表瀏覽器會捲動至網頁起始處 -->
+            </div>
+
+            <div id="right_nav">
+                <div>課程總覽</div>
+                <ul>
+                    <li><a href="#">程式開發</a></li>
+                    <li><a href="#">資訊安全</a></li>
+                    <li><a href="#">網路通訊</a></li>
+                    <li><a href="#">雲端運算</a></li>
+                </ul>
+                <div>近期課程</div>
+                <ul>
+                    <li><a href="#">PHP+MySQL動態網站開發實務</a></li>
+                    <li><a href="#">JavaScript+jQuery 動態網頁設計</a></li>
+                    <li><a href="#">Android行動應用開發SOHO養成班</a></li>
+                    <li><a href="#">CSS網頁精修班</a></li>
+                </ul>
+                <div>客戶服務</div>
+                <ul>
+                    <li><a href="#">官方網站</a></li>
+                    <li><a href="#">電子郵件</a></li>
+                    <li><a href="#">行動App</a></li>
+                    <li><a href="#">客服電話</a></li>
+                </ul>
+            </div>
+        </div>
+        <!--end of green box-->
+
+        <div id="main_content">
+            <div id="left_content">
+                <h2>Latest News</h2>
+                <div class="news">
+                    <div class="news_icon">
+                        <img src="images/greefies/testimonials_icon.gif" alt="" title="" />
+                    </div>
+                    <div class="news_content">
+                        <span>"Lorem ipsum dolor sit amet</span><br />
+                        Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                        Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                    </div>
+                </div>
+                <div class="read_more_link"><a href="#">read more</a></div>
+
+                <div class="news">
+                    <div class="news_icon">
+                        <img src="images/greefies/testimonials_icon.gif" alt="" title="" />
+                    </div>
+                    <div class="news_content">
+                        <span>"Lorem ipsum dolor sit amet</span><br />
+                        Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                        Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                    </div>
+                </div>
+                <div class="read_more_link"><a href="#">read more</a></div>
+
+                <div class="news">
+
+                    <div id="slider">
+                        <div>
+                            <a href="#">
+                                <img src="./images/large/slide1.jpg" width="320" height="200" alt="slide1">
+                            </a>
+                        </div>
+                        <div>
+                            <a href="#">
+                                <img src="./images/large/slide2.jpg" width="320" height="200" alt="slide2">
+                            </a>
+                        </div>
+                        <div class="c1" title="李清照 聲聲慢">
+                            <div class="c2">李清照 聲聲慢</div>
+                            <div class="c3">
+                                尋尋覓覓 冷冷清清 淒淒慘慘戚戚<br />
+                                乍暖還寒時候 最難將息 三杯兩盞淡酒 怎敵他晚來風急<br />
+                                雁過也 正傷心 卻是舊時相識 滿地黃花堆積<br />
+                                憔悴損 如今有誰堪摘 守著窗兒 獨自怎生得黑<br />
+                                梧桐更兼細雨 到黃昏點點滴滴<br />
+                                這次第 怎一個愁字了得<br />
+                            </div>
+                        </div>
+                        <div>
+                            <a href="#">
+                                <img src="./images/large/slide3.jpg" width="320" height="200" alt="slide3">
+                            </a>
+                        </div>
+                        <div>
+                            <a href="#">
+                                <img src="./images/large/slide4.jpg" width="320" height="200" alt="slide4">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--end of left content-->
+
+            <div id="right_content">
+                <h2>Contact Information</h2>
+                <div class="contact_info_box">
+                    <div class="contact_info_title">Dolore magna aliqua</div>
+                    <div class="contact_info">
+                        <img src="images/greefies/phone_icon.gif" alt="" title="連絡電話" class="box_img" />
+                        <span class="tel">07-9699885#123</span><br />
+                        <span class="tel">07-9699885#456</span>
+                    </div>
+                    <div class="contact_info">
+                        <img src="images/greefies/contact_icon.gif" alt="" title=""
+                            class="box_img" />info@company.com<br />
+                        contact@company.com
+                    </div>
+                    <div class="adress" data-geo="" style="width: 200px;">
+                        高雄市中正四路211號8F-1
+                    </div>
+                </div>
+
+                <h2>Contact form</h2>
+                <div id="contact_form">
+                    <div class="form_row">
+                        <label>期望回覆日</label>
+                        <input style="display: inline" type="text" name="date" class="contact_input" />
+                    </div>
+
+                    <div class="form_row">
+                        <label>姓名:</label><input type="text" name="name" class="contact_input" />
+                    </div>
+
+                    <div class="form_row">
+                        <label>Email:</label><input type="text" name="email" class="contact_input" />
+                    </div>
+
+                    <div class="form_row">
+                        <label>Phone:</label><input type="text" name="phone" class="contact_input" />
+                    </div>
+
+                    <div class="form_row">
+                        <label>曾洽電話:</label><input type="text" name="contacted_phone" class="contact_input" />
+                    </div>
+
+                    <div class="form_row">
+                        <label>滿意度:</label><input type="text" name="sat_degree" class="contact_input"
+                            style="height:14px;width:190px" />
+                    </div>
+
+                    <div class="form_row">
+                        <label>Message:</label><textarea name="name" class="contact_textarea"></textarea>
+                    </div>
+                    <div class="send"><a id="a_send" href="#" title="寄發聯絡信">send</a></div>
+                </div>
+            </div>
+            <!--end of right content-->
+        </div>
+        <!--end of main content-->
+
+        <div id="footer">
+            <div class="copyright">
+                <a href="#">
+                    <img src="images/greefies/footer_logo.gif" border="0" alt="" title="" />
+                </a>
+            </div>
+            <div class="footer_links">
+                <a href="#">About us</a>
+                <a href="#">Privacy policy</a>
+                <a href="#">Contact us </a>
+                <a href="http://www.webpagedesign.com.au">Art for the web</a>
+            </div>
+        </div>
+    </div>
+    <!--end of main container-->
+
+</body>
+
+</html>
