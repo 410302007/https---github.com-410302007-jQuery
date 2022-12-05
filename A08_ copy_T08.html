@@ -126,7 +126,7 @@
                 ]
             });
 
-            //Method1. ->return false           阻止 <a>標籤 之預設行為  
+            //Method1. ->return false               阻止 <a>標籤 之預設行為(超連結) 
             $(".read_more a").click(function () {
                 // dialog1.html("歡迎光臨我們網站...").dialog("open");    
                 //html為設定前面jquery(dialog1)的內容元素(文字)
@@ -134,16 +134,37 @@
                 // return flase;   //阻止 <a>標籤 之預設行為(= event.prevent default)   
                 // 若沒有return false ->會顯示超連結
             });
-
-            //Method2. ->event.prevent default   阻止 <a>標籤 之預設行為  
+            //Method2. ->event.prevent default      阻止 <a>標籤 之預設行為(超連結)   
             // $(".read_more a").click(function (event) {
             //     event.preventDefault();
             //     dialog1.dialog("open");
             // });
 
+
             //Draggable與Droppable
+            $("span.tel").draggable(
+                {
+                    helper: "clone",
+                    opacity: 0.3
+                });
 
             //工具提示框
+            $(document).tooltip({
+                items: "[title],[data-geo]",
+                content: function () {
+                    let jqEle = $(this);         //this 為滑鼠移到上空的那個元素
+                    if (jqEle.is("[title]")) {   //is 為確認是否符合選擇器
+                        return jqEle.attr("title");     //title屬性質是否為工具提示框的內容   
+                    }
+                    else {
+
+                        return "<img src='https://maps.googleapis.com/maps/api/staticmap" +
+                            "?zoom=15&size=280x280&maptype=roadmap&key=AIzaSyDcs9UPDbrYVCwtvYudAYHo0gzn0P1gc-M" +
+                            "&markers=" + jqEle.html() + "'/>";  //Google Maps Static API (key為 Google's API金鑰)
+                    }
+                },
+                hide: { effect: "clip" }   //jquery ui - effect
+            });
 
             //Spinner
             $("input[name=sat_degree]").spinner({
